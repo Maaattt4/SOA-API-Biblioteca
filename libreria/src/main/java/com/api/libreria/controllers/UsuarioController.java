@@ -1,6 +1,7 @@
 package com.api.libreria.controllers;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.api.libreria.models.UsuarioModel;
 import com.api.libreria.services.UsuarioService;
@@ -43,13 +44,9 @@ public class UsuarioController {
         return usuarioService.actualizarUsuario(request, id);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminarUsuarioPorId(@PathVariable("id") Long id) {
-        boolean ok = usuarioService.eliminarUsuarioPorId(id);
-        if (ok) {
-            return "Se eliminó el usuario. ID: " + id;
-        } else {
-            return "No se logro eliminar el usuario. ID: " + id;
-        }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Long id) {
+        this.usuarioService.eliminarUsuarioPorId(id);
+        return ResponseEntity.noContent().build(); 
     }
 }

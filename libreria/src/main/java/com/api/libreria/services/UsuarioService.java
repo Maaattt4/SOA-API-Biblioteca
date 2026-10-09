@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.api.libreria.models.UsuarioModel;
 import com.api.libreria.repositories.IUsuarioRepository;
@@ -52,12 +54,11 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public boolean eliminarUsuarioPorId(Long id) {
-    try {
+    public void eliminarUsuarioPorId(Long id) {
+        if(!usuarioRepository.existsById(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe un usuario con ID: " + id);
+        }
         usuarioRepository.deleteById(id);
-        return true;
-    } catch (Exception err) {
-        return false;
     }
-    }    
-}
+}    
+

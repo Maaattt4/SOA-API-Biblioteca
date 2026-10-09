@@ -1,5 +1,6 @@
 package com.api.libreria.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,12 +42,8 @@ public class LibroController {
     }
 
     @DeleteMapping(path = "/{isbn}")
-    public String eliminarPorId(@PathVariable("isbn") Long isbn) {
-        boolean ok = this.libroService.eliminarLibro(isbn);
-        if (ok) {
-            return "Se eliminó el libro. ISBN: " + isbn;
-        } else {
-            return "No se pudo eliminar el libro. ISBN: " + isbn;
-        }
+    public ResponseEntity<Void> eliminarPorId(@PathVariable("isbn") Long isbn) {
+        this.libroService.eliminarLibro(isbn);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,4 +1,4 @@
-//tarea, completa esta entidad con un repositorio, un servicio y un controlador
+//tarea, completar esta entidad con un repositorio, un servicio y un controlador
 package com.api.libreria.models;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;

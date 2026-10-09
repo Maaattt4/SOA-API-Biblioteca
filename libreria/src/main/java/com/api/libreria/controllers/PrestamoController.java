@@ -1,5 +1,6 @@
 package com.api.libreria.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,13 +44,9 @@ public class PrestamoController {
         return prestamoService.registrarDevolucion(id);
     }
 
-    @DeleteMapping("/{id}")
-    public String eliminarPrestamo(@PathVariable("id") Long id) {
-        boolean ok = prestamoService.eliminarPrestamo(id);
-        if (ok) {
-            return "Se eliminó el préstamo con ID: " + id;
-        } else {
-            return "No se pudo eliminar el préstamo con ID: " + id;
-        }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Long id) {
+        this.prestamoService.eliminarPrestamo(id);
+        return ResponseEntity.noContent().build(); 
     }
 }
