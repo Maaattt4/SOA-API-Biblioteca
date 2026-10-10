@@ -1,19 +1,21 @@
-package com.api.libreria.models;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.api.libreria.models; 
+
+import jakarta.persistence.Column; 
+import jakarta.persistence.Entity; 
+import jakarta.persistence.GeneratedValue; 
+import jakarta.persistence.GenerationType; 
+import jakarta.persistence.Id; 
 import jakarta.persistence.Table;
 
-@Entity
-@Table (name="libros")
-public class LibroModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity 
+@Table (name="libros") 
+public class LibroModel { 
+
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long isbn;
 
-    @Column
+    @Column(nullable = false)
     private String titulo;
 
     @Column
@@ -22,7 +24,7 @@ public class LibroModel {
     @Column
     private String añoPublicacion;
 
-    @Column
+    @Column(nullable = false)
     private int numeroEjemplares;
 
     public Long getIsbn() {
@@ -64,6 +66,4 @@ public class LibroModel {
     public void setNumeroEjemplares(int numeroEjemplares) {
         this.numeroEjemplares = numeroEjemplares;
     }
-
-    
 }

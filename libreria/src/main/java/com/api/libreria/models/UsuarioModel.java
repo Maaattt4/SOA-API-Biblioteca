@@ -1,49 +1,50 @@
-//tarea, completar esta entidad con un repositorio, un servicio y un controlador
-package com.api.libreria.models;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package com.api.libreria.models; 
 
-@Entity
-@Table(name="usuarios")
+import jakarta.persistence.GenerationType; 
+import jakarta.persistence.GeneratedValue; 
+import jakarta.persistence.Column; 
+import jakarta.persistence.Entity; 
+import jakarta.persistence.Id; 
+import jakarta.persistence.Table;
+import java.time.LocalDate;
+
+@Entity 
+@Table(name="usuarios") 
 public class UsuarioModel {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //mysql le incrementa++
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String nombre; 
-    
+
     @Column
     private String apellidos; 
-    
+
     @Column
     private String telefono;
 
     @Column
     private String direccion;
-    
+
     @Column
-    private String fechaNacimiento; 
+    private LocalDate fechaNacimiento; 
 
     @Column
     private String estado;
 
-    @Column
+    @Column(nullable = false)
     private String correo; 
-    
-    @Column
+
+    @Column(nullable = false)
     private String contrasena; 
-    
+
     @Column
     private String rol; 
-    
+
     @Column
-    private String fechaCreacion;
+    private LocalDate fechaCreacion; 
 
     public Long getId() {
         return id;
@@ -85,11 +86,11 @@ public class UsuarioModel {
         this.direccion = direccion;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -125,11 +126,11 @@ public class UsuarioModel {
         this.rol = rol;
     }
 
-    public String getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     } 
 }
